@@ -44,16 +44,66 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 	
 	var React = __webpack_require__(1);
 	var ReactDOM = __webpack_require__(158);
 	
-	ReactDOM.render(React.createElement(
-	  'h1',
-	  null,
-	  'Github Searcher'
-	), document.getElementById('root'));
+	var Commit = React.createClass({
+	  displayName: "Commit",
+	
+	  render: function render() {
+	    return React.createElement(
+	      "p",
+	      null,
+	      this.props.message
+	    );
+	  }
+	});
+	
+	var CommitList = React.createClass({
+	  displayName: "CommitList",
+	
+	  getInitialState: function getInitialState() {
+	    return { data: [] };
+	  },
+	
+	  loadCommits: function loadCommits() {
+	    $.ajax({
+	      url: this.props.url,
+	      dataType: "json",
+	      cache: false,
+	      success: function (data) {
+	        this.setState({ data: data });
+	      }.bind(this),
+	      error: function (xhr, status, error) {
+	        console.error(this.props.url, status, error.toString());
+	      }.bind(this)
+	    });
+	  },
+	
+	  componentDidMount: function componentDidMount() {
+	    this.loadCommits();
+	    setInterval(this.loadCommits, this.props.interval);
+	  },
+	
+	  render: function render() {
+	    var latestCommits = this.state.data.slice(0, 5);
+	    var commits = latestCommits.map(function (commitData) {
+	      return React.createElement(Commit, { key: commitData.sha, message: commitData.commit.message });
+	    });
+	
+	    return React.createElement(
+	      "div",
+	      { className: "commitBox" },
+	      commits
+	    );
+	  }
+	});
+	
+	ReactDOM.render(React.createElement(CommitList, {
+	  url: "https://api.github.com/repos/taylorkearns/searchable-sample/commits",
+	  interval: 10000 }), document.getElementById("root"));
 
 /***/ },
 /* 1 */
