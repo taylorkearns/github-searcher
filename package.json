@@ -5,6 +5,8 @@
   "main": "index.js",
   "scripts": {
     "build": "webpack --progress --colors --watch",
+    "dist": "webpack -p",
+    "postinstall": "npm run dist",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
