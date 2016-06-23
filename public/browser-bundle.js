@@ -103,7 +103,7 @@
 	
 	ReactDOM.render(React.createElement(CommitList, {
 	  url: "https://api.github.com/repos/taylorkearns/searchable-sample/commits",
-	  interval: 10000 }), document.getElementById("root"));
+	  interval: 60000 }), document.getElementById("root"));
 
 /***/ },
 /* 1 */

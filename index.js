@@ -48,7 +48,7 @@ var CommitList = React.createClass({
 ReactDOM.render(
   <CommitList
   url="https://api.github.com/repos/taylorkearns/searchable-sample/commits"
-  interval={ 10000 } />,
+  interval={ 60000 } />,
 
   document.getElementById("root")
 )
