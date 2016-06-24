@@ -1,16 +1,18 @@
 module.exports = {
-  entry: './index',
+  context: __dirname + "/",
+  entry: "./index",
   output: {
-    filename: 'public/browser-bundle.js'
+    path: __dirname + "/public",
+    filename: "browser-bundle.js"
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
         query: {
-          presets: ['es2015', 'react']
+          presets: ["es2015", "react"]
         }
       },
     ]
