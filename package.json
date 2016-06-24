@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --progress --colors --watch",
+    "build": "webpack --progress --colors --watch",
+    "postinstall": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",

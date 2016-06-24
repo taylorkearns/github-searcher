@@ -1,6 +1,8 @@
 var React = require("react")
 var ReactDOM = require("react-dom")
 
+console.log("9:11");
+
 var Commit = React.createClass({
   render: function() {
     return(
