@@ -11,7 +11,7 @@ var Commit = React.createClass({
 
 var CommitList = React.createClass({
   getInitialState: function() {
-    return { data: [] }
+    return { data: "foo" }
   },
 
   loadCommits: function() {
