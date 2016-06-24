@@ -1,8 +1,9 @@
+const path = require("path");
+
 module.exports = {
-  context: __dirname + "/",
   entry: "./index",
   output: {
-    path: __dirname + "/public",
+    path: path.join(__dirname, "public"),
     filename: "browser-bundle.js",
     publicPath: "/public/"
   },
