@@ -3,7 +3,8 @@ module.exports = {
   entry: "./index",
   output: {
     path: __dirname + "/public",
-    filename: "browser-bundle.js"
+    filename: "browser-bundle.js",
+    publicPath: "/public/"
   },
   devtool: "source-map",
   module: {
