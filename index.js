@@ -17,10 +17,13 @@ var CommitList = React.createClass({
   loadCommits: function() {
     $.ajax({
       url: this.props.url,
+      ifModified: true,
       dataType: "json",
       cache: false,
-      success: function(data) {
-        this.setState({ data: data });
+      success: function(data, status, jqXHR) {
+        if(data) {
+          this.setState({ data: data });
+        }
       }.bind(this),
       error: function(xhr, status, error) {
         console.error(this.props.url, status, error.toString());
@@ -30,11 +33,12 @@ var CommitList = React.createClass({
 
   componentDidMount: function() {
     this.loadCommits();
-    // setInterval(this.loadCommits, this.props.interval);
+    setInterval(this.loadCommits, this.props.interval);
   },
 
   render: function() {
     var latestCommits = this.state.data.slice(0, 5);
+
     var commits = latestCommits.map(function(commitData) {
       return <Commit key={ commitData.sha } message={ commitData.commit.message } />;
     });
@@ -48,7 +52,7 @@ var CommitList = React.createClass({
 ReactDOM.render(
   <CommitList
   url="https://api.github.com/repos/taylorkearns/searchable-sample/commits"
-  interval={ 60000 } />,
+  interval={ 20000 } />,
 
   document.getElementById("root")
 )
