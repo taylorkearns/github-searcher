@@ -30,7 +30,7 @@ var CommitList = React.createClass({
 
   componentDidMount: function() {
     this.loadCommits();
-    setInterval(this.loadCommits, this.props.interval);
+    // setInterval(this.loadCommits, this.props.interval);
   },
 
   render: function() {

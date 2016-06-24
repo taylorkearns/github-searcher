@@ -84,7 +84,7 @@
 	
 	  componentDidMount: function componentDidMount() {
 	    this.loadCommits();
-	    setInterval(this.loadCommits, this.props.interval);
+	    // setInterval(this.loadCommits, this.props.interval);
 	  },
 	
 	  render: function render() {
